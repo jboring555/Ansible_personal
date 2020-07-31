@@ -1,0 +1,18 @@
+#Verifying playbook with Lint
+ansible-lint verify-apache.yml
+
+#Ansible playbook checks
+ansible-playbook playbook.yml --syntax-check
+ansible-playbook playbook.yml --list-hosts
+ansible-playbook playbook.yml --verbose
+
+
+admin:CN=g1P.aInfrastructure.Storage_Admin,OU=Application,OU=Groups,OU=Groups.Users,DC=AD001,DC=InfoFTPS,DC=COM
+
+
+User: admin, Command: modify_ldap_config, Arguments: {ldap_config_id=["1339c18a7b144527877b4495a29f2b17", "", "-1"], bind_dn="CN=s1P.vanwindows,OU=Functional,OU=Users,OU=Groups.Users,DC=AD001,DC=InfoFTPS,DC=COM", bind_pw=xxxxxxx, search_base="DC=AD001,DC=INFOFTPS.COM,DC=COM", search_filter="sAMAccountName={username}", server_url=["ldap://s1flokydlmsdc06.ad001.infoftps.com:389"], user_to_dn_rule="{username}@ad001.infoftps.com", roles=["admin:CN=A315091,OU=People,OU=Users,OU=Groups.Users,DC=AD001,DC=InfoFTPS,DC=COM"], timeout=1500, cache_expire=86400, ca_cert_data=None}
+
+
+
+
+ldapsearch -x -H ldap://s1flokydlmsdc01.ad001.infoftps.com:389 -D "u315901" -w D5ngH0rn -s sub -z 10  l 1500 -b OU=Shanghai,OU=Application,OU=Groups,OU=Groups.Users,DC=AD001,DC=InfoFTPS,DC=COM distinguishedName dn

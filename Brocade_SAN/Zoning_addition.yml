@@ -1,0 +1,69 @@
+---
+
+# Copyright 2019 Broadcom. All rights reserved.
+# The term 'Broadcom' refers to Broadcom Inc. and/or its subsidiaries.
+# GNU General Public License v3.0+
+# (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+
+
+- hosts: localhost
+  gather_facts: False
+
+  vars:
+    credential:
+      fos_ip_addr: "{{POC_SANA}}"
+      fos_user_name: xxxxxxxx
+      fos_password: xxxxxxxx
+      https: False
+    aliases:
+      - name: ansible_host1
+        members:
+          - 11:22:33:44:55:66:77:88
+      - name: ansible_target1
+        members:
+          - 22:22:33:44:55:66:77:99
+      - name: ansible_target2
+        members:
+          - 22:22:33:44:55:66:77:AA
+    zones:
+      - name: dfw_poc_fab_a_ansible_target1
+        members:
+          - ansible_host1
+        principal_members:
+          - ansible_target1
+      - name: dfw_poc_fab_a_ansible_target2
+        members:
+          - ansible_host1
+        principal_members:
+          - ansible_target2
+    cfgs:
+      - name: dalpocbs01_zone_config
+        members:
+          - dfw_poc_fab_a_ansible_target1
+          - dfw_poc_fab_a_ansible_target2
+  tasks:
+
+    - name: Load Switch Vars
+      include_vars: 'properties/switch_properties.yml'
+
+    - name: Create aliases
+      brocade_zoning_alias:
+        credential: "{{credential}}"
+        vfid: -1
+        aliases: "{{aliases}}"
+#       aliases_to_delete: "{{aliases_to_delete}}"
+
+    - name: Create zones
+      brocade_zoning_zone:
+        credential: "{{credential}}"
+        vfid: -1
+        zones: "{{zones}}"
+#       zones_to_delete: "{{zones_to_delete}}"
+
+    - name: Create cfgs
+      brocade_zoning_cfg:
+        credential: "{{credential}}"
+        vfid: -1
+        cfgs: "{{cfgs}}"
+#      cfgs_to_delete: "{{cfgs_to_delete}}"
+        active_cfg: "dalpocbs01_zone_config"
