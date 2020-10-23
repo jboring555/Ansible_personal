@@ -1,0 +1,14 @@
+---
+- name: Run Windows Updates
+  hosts: win
+  tasks:
+    - name: Running Windows update
+      win_updates:
+        category_names:
+        - Application
+        #- CriticalUpdates
+        #- DefinitionUpdates
+        #- SecurityUpdates
+        #- Updates
+        reboot: yes
+        #reboot_timeout: 420

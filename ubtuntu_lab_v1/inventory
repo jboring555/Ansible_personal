@@ -1,0 +1,16 @@
+
+codtc1-dc5ubt01 ansible_ssh_host=10.140.251.66
+codtc1-dc5ubt02 ansible_ssh_host=10.140.251.68
+codtc1-dc5ubt03 ansible_ssh_host=10.140.251.69
+[labservers]
+codtc1-dc5ubt01
+codtc1-dc5ubt02
+codtc1-dc5ubt03
+
+[lab:children]
+labservers
+
+[lab:vars]
+ansible_ssh_user=mercadmin
+ansible_ssh_pass=M3rcury12!
+ansible_become_password=M3rcury12!
