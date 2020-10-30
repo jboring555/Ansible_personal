@@ -1,0 +1,20 @@
+---
+- hosts: unity_arrays
+  vars_files:
+    - ../../group_vars/all
+  tasks:
+    - name: Get detailed list of Unity entities.
+      dellemc_unity_gatherfacts:
+        unispherehost: "{{unity_arrays}}"
+        username: "{{unity_username}}"
+        password: "{{unity_password}}"
+        verifycert: "{{verifycert}}"
+        gather_subset:
+          - host
+          - fc_initiator
+          - iscsi_initiator
+          - cg
+          - storage_pool
+          - vol
+          - snapshot_schedule
+      

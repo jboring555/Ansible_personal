@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  vars_files:
+    - ../../../group_vars/all
+  tasks:
+    - name: Delete lun
+      lun:
+        login:
+          unityIP: "{{ unity_host }}"
+          username: "{{ unity_username }}"
+          password: "{{ unity_password }}"
+        delete:
+          id: "{{ del_lun }}"
+      register: result3
+    - debug: var=result3

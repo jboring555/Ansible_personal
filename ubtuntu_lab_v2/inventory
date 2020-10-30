@@ -21,8 +21,12 @@ codtc1it553
 codtc1it554
 codtc1it555
 
+[webservers]
+codtc1it547
+
 [lab:children]
 labservers
+webservers
 
 [lab:vars]
 ansible_ssh_user=mercadmin

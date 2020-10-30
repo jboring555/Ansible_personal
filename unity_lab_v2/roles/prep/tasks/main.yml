@@ -1,0 +1,20 @@
+---
+
+- name: Install pip on all OSes
+  easy_install:
+    name: pip
+    state: latest
+  become: true
+
+- name: Install libselinux-python on all OSes
+  package:
+    name: libselinux-python
+    state: present
+  become: true
+  when: ansible_distribution != "MacOSX"
+
+- name: Install Python libraries
+  pip:
+    name: requests
+    version: 2.13.0
+  become: true
