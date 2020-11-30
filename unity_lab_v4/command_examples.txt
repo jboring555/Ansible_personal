@@ -1,0 +1,12 @@
+ansible-playbook unity_arrays -i inventory ./playbooks/getters/unity_get.yml -vvv
+ansible-playbook -i inventory ./playbooks/getters/unity_get.yml -vvv
+ansible-playbook -i inventory ./playbooks/rest_objects/lun/create.yml
+ansible-playbook -i inventory ./playbooks/getters/virtualDisks_get_id.yml
+ansible-playbook unity_arrays -i inventory ./playbooks/getters/unity_get.yml -vvv
+ansible-playbook -i inventory ./playbooks/getters/unity_get.yml
+ansible-playbook -i inventory ./playbooks/getters/virtualDisks_get_id.yml
+ansible-playbook -i inventory ./playbooks/getters/unity_get.yml
+ansible-playbook -i inventory ./playbooks/rest_objects/lun/create.yml
+ansible-playbook -i inventory ./playbooks/rest_objects/lun/delete.yml
+ansible-playbook -i inventory ./playbooks/getters/unity_get.yml
+
