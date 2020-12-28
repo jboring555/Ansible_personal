@@ -1,0 +1,57 @@
+---
+- hosts: webservers
+  become: true
+  become_user: root
+  tasks:
+    - name: Install prerequisites
+      apt: name={{ item }} update_cache=yes state=latest force_apt_get=yes
+      loop: [ 'aptitude' ]
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+      
+
+    - name: Install Apache
+      apt: name=apache2 update_cache=yes state=latest
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+      
+    - name: Create document root
+      file:
+        path: "/var/www/{{ http_host }}"
+        state: directory
+        owner: "{{ app_user }}"
+        mode: '0755'
+
+    - name: Copy index test page
+      template:
+        src: "/home/mercadmin/ansible/ubtuntu_lab_v2/webfiles/index.html.j2"
+        dest: "/var/www/{{ http_host }}/index.html"
+
+    - name: Set up Apache virtualhost
+      template:
+        src: "/home/mercadmin/ansible/ubtuntu_lab_v2/webfiles/apache.conf.j2"
+        dest: "/etc/apache2/sites-available/{{ http_conf }}"
+
+    - name: Enable new site
+      shell: /usr/sbin/a2ensite {{ http_conf }}
+      notify: Reload Apache
+
+    - name: Disable default Apache site
+      shell: /usr/sbin/a2dissite 000-default.conf
+      when: disable_default
+      notify: Reload Apache
+
+    - name: "UFW - Allow HTTP on port {{ http_port }}"
+      ufw:
+        rule: allow
+        port: "{{ http_port }}"
+        proto: tcp
+
+  handlers:
+    - name: Reload Apache
+      service:
+        name: apache2
+        state: reloaded
+
+    - name: Restart Apache
+      service:
+        name: apache2
+        state: restarted
