@@ -1,0 +1,14 @@
+[win]
+10.140.251.[70:71]
+10.140.251.3
+10.140.251.[30:33]
+
+
+[win:vars]
+ansible_user="infralab\mercadmin"
+ansible_password="M3rcury12!"
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
+ansible_winrm_transport=ntlm
+ansible_winrm_port=5985
+ansible_winrm_scheme=http

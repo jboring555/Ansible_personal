@@ -1,0 +1,31 @@
+custom_spec_info:
+    description: metadata about the customization specification
+    returned: always
+    type: dict
+    sample: {
+        "assignip-eee0d684-44b7-457c-8c55-2585590b0d99": {
+            "change_version": "1523438001",
+            "description": "sample description",
+            "dns_server_list": [],
+            "dns_suffix_list": [],
+            "domain": "None",
+            "hostname": "sample1",
+            "hw_clock_utc": null,
+            "last_updated_time": "2018-04-11T09:13:21+00:00",
+            "name": "sample",
+            "nic_setting_map": [
+                {
+                    "dns_domain": null,
+                    "gateway": [],
+                    "ip_address": "192.168.10.10",
+                    "net_bios": null,
+                    "nic_dns_server_list": [],
+                    "primary_wins": null,
+                    "secondry_wins": null,
+                    "subnet_mask": "255.255.255.0"
+                }
+            ],
+            "time_zone": null,
+            "type": "Linux"
+        },
+    }

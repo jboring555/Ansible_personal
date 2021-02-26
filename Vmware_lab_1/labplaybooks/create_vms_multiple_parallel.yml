@@ -1,0 +1,25 @@
+---
+
+- name: Clone multiple VMs
+  hosts: localhost 
+  gather_facts: false
+  vars_files: 
+    '../group_vars/multiple_vms.yml'
+  tasks: 
+  - name: Clone multiple VMs from template
+    local_action:
+      module: vmware_guest
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      validate_certs: no      
+      folder: "{{ folder }}"
+      template: "{{ vmtemplate }}"
+      name: "{{ item }}"
+      cluster: "{{ vmcluster }}"
+      datacenter: dtc_infralab01
+      state: poweredon
+      #customization_spec: "{{ customization_spec }}"
+    loop: "{{ servers }}"
+    async: 60
+    poll: 0
