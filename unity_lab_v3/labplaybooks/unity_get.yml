@@ -1,7 +1,7 @@
 ---
 - hosts: unity_arrays
-  vars_files:
-    - ../../group_vars/all
+  #vars_files:
+  # - ../../group_vars/all
   tasks:
     - name: Get detailed list of Unity entities.
       dellemc_unity_gatherfacts:

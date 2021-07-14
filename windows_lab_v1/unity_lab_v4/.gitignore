@@ -1,0 +1,5 @@
+*.retry
+*.pyc
+*.swp
+*.idea/*
+*venv/*

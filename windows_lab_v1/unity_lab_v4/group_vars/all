@@ -1,0 +1,36 @@
+######## Unity vars ########
+
+unity_host: 10.140.251.41
+unity_host2: 192.168.70.218
+
+default_password: Password123#
+
+unity_username: admin
+unity_password: M3rcury12!
+
+######## REST-object default names ########
+
+pool_name: Pool_01
+pool_id: pool_3
+lun_name: test_an_lun01
+lun_size: 5500
+host_name: default_host_name
+nasServer_name: default_nasServer_name
+
+######## Other parameters ########
+
+dns_servers: 192.168.0.10
+
+ntp_servers: 0.us.pool.ntp.org
+
+# A manually defined individual host system.
+host_type: 1
+
+ethernet_port_id: spa_eth1
+
+iscsiPortal_ipAddress: 192.168.70.225
+iscsiPortal_netmask: 255.255.255.0
+
+fileInterface_ipPort: spa_eth0
+
+fileInterface_ipAddress: 192.168.70.222
